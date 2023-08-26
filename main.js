@@ -2,35 +2,60 @@ var round = 1;
 var scoreUser = 0;
 var scoreComputer = 0;
 
-while(round <= 5){
+var userInput = '';
 
-userInput = '';
+let rock = document.getElementById('rock');
+let paper = document.getElementById('paper');
+let scissors = document.getElementById('scissors');
 
-alert('Round: ' + round);
+let userResults = document.getElementById('user_selection');
+let computerResults = document.getElementById('computer_selection');
+let gameResults = document.getElementById('game_results');
 
-while (userInput != 'Rock' && userInput != 'Paper' && userInput != 'Scissor'){
-var userInput = prompt("Rock, Paper or Scissor?");
-}
+rock.addEventListener('click', function () {
+    if (scoreUser < 5 && scoreComputer < 5) {
+    userInput = 'Rock';
+    userResults.innerText = 'Rock';
+    startRound();
+    }
+});
 
-alert('You choosed: ' + userInput);
+paper.addEventListener('click', function () {
+    if (scoreUser < 5 && scoreComputer < 5) {
+    userInput = 'Paper';
+    userResults.innerText = 'Paper';
+    startRound();
+    }
+});
+
+scissors.addEventListener('click', function () {
+    if (scoreUser < 5 && scoreComputer < 5) {
+    userInput = 'Scissors';
+    userResults.innerText = 'Scissors';
+    startRound();
+    }
+});
+
+function startRound() {
 
 var computerInput = Math.ceil(Math.random() * 3);
 
 switch (computerInput) {
     case 3:
         computerInput = 'Rock';
+        computerResults.innerText = 'Rock';
         break;
     case 2:
         computerInput = 'Paper';
+        computerResults.innerText = 'Paper';
         break;
     case 1:
-        computerInput = 'Scissor';
+        computerInput = 'Scissors';
+        computerResults.innerText = 'Scissors';
         break;
     default:
         break;
 }
-
-alert('The computer choosed: ' + computerInput);
 
 var gameOutput = '';
 
@@ -44,7 +69,7 @@ else if (userInput == 'Rock' && computerInput == 'Paper') {
     gameOutput = 'Lost';
 }
 
-else if (userInput == 'Rock' && computerInput == 'Scissor') {
+else if (userInput == 'Rock' && computerInput == 'Scissors') {
     gameOutput = 'Win';
 }
 
@@ -58,21 +83,21 @@ else if (userInput == 'Paper' && computerInput == 'Paper') {
     gameOutput = 'Tie';
 }
 
-else if (userInput == 'Paper' && computerInput == 'Scissor') {
+else if (userInput == 'Paper' && computerInput == 'Scissors') {
     gameOutput = 'Lost';
 }
 
 // User choosed Scissor
 
-else if (userInput == 'Scissor' && computerInput == 'Rock') {
+else if (userInput == 'Scissors' && computerInput == 'Rock') {
     gameOutput = 'Lost';
 }
 
-else if (userInput == 'Scissor' && computerInput == 'Paper') {
+else if (userInput == 'Scissors' && computerInput == 'Paper') {
     gameOutput = 'Win';
 }
 
-else if (userInput == 'Scissor' && computerInput == 'Scissor') {
+else if (userInput == 'Scissors' && computerInput == 'Scissors') {
     gameOutput = 'Tie';
 }
 
@@ -84,20 +109,16 @@ if (gameOutput == 'Lost') {
     scoreComputer++;
 }
 
+gameResults.innerHTML += 'Round: ' + round + ' : ' + gameOutput + '<br>';
+
 round++;
 
-alert(gameOutput);
-
-}
-
-if(scoreUser > scoreComputer) {
+if (scoreUser == 5) {
     alert('You won the game! :)');
 }
 
-if(scoreComputer > scoreUser) {
+if (scoreComputer == 5) {
     alert('You lost the game! :(');
 }
 
-if (scoreComputer == scoreUser) {
-    alert('It\'s a tie :S');
 }

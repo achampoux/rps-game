@@ -1,0 +1,17 @@
+img.icons {
+    max-width: 200px;
+}
+
+section#icons {
+    width: 100%;
+    display: inline-flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 100px 0;
+}
+
+#results {
+    text-align: center;
+}
